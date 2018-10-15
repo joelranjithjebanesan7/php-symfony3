@@ -40,6 +40,7 @@ public function create(Request $request){
     **/$form->handleRequest($request);
     if ($form->isSubmitted() and $form->isValid()){
         $question = $form->get('question')->getData();
+        preg_match_all('/<img[^>]+>/i',$html, $question);
         $entityManager = $this->getDoctrine()->getManager();
         $entityQuestion = new Entity\Question();
         $entityQuestion
